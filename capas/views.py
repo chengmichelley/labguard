@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import CapaAction
 
 def capa_dashboard(request):
     active_capas = CapaAction.objects.filter(is_active=True).count()
