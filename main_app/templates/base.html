@@ -15,12 +15,15 @@
             <div class="header-logo-container">
                 <a><img src="../../static/images/LabGuardLogo.png" alt="LabGuard Logo" height="80" width="auto" /></a>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="/about">About</a></li>
+            <nav class = "navbar">
+                <ul class = "nav-links">
+                    <li><a href="{% url 'main_app:about' %}" class="nav-item">About</a></li>
+                    <li><a href="{% url 'main_app:overview' %}" class="nav-item">Dashboard</a></li>
                 </ul>
             </nav>
         </header>
+
+
         <main>{% block content%} {% endblock %}</main>
     </body>
 </html>

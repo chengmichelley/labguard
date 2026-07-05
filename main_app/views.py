@@ -10,3 +10,6 @@ def about(request):
     
     return render(request, 'about.html')
 
+def overview_dashboard(request):
+    
+    return render(request, 'dashboard.html')
