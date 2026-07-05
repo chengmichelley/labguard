@@ -23,7 +23,18 @@
             </nav>
         </header>
 
+        <div class="layout-container">
+          <nav class="sidebar">
+            <a href="{% url 'main_app:overview' %}">📊 Compliance Overview</a>
+            <hr>
+            <a href="{% url 'sops:dashboard' %}">📜 SOP Governance</a>
+            <a href="{% url 'training:dashboard' %}">🎓 Employee Training</a>
+            <a href="{% url 'deviations:dashboard' %}">⚠️ Deviations & Exceptions</a>
+            <a href="{% url 'capas:dashboard' %}">🔧 CAPA Action Plans</a>
+            <a href="{% url 'documents:dashboard' %}">📁 Controlled Documents</a>
+          </nav>
 
         <main>{% block content%} {% endblock %}</main>
+        </div>
     </body>
 </html>

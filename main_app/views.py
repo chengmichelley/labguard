@@ -8,8 +8,8 @@ def home(request):
 
 def about(request):
     
-    return render(request, 'about.html')
+    return render(request, 'main_app/about.html')
 
 def overview_dashboard(request):
     
-    return render(request, 'dashboard.html')
+    return render(request, 'main_app/dashboard.html')
