@@ -10,7 +10,7 @@ class SopDocument(models.Model):
     title = models.CharField(max_length = 255)
     doc_number = models.CharField(max_length=50, unique=True)
     version = models.IntegerField(default=1)
-    status = models.CharField(max_length = 50, default= 'pending_review')
+    status = models.CharField(max_length = 50, choices=STATUS_CHOICES, default= 'draft')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
