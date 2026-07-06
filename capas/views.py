@@ -2,6 +2,6 @@ from django.shortcuts import render
 from .models import CapaAction
 
 def capa_dashboard(request):
-    active_capas = CapaAction.objects.filter(is_active=True).count()
+    active_capas = CapaAction.objects.filter(status='open').count()
     context = {'active_capas': active_capas}
     return render(request, 'capas/dashboard.html', context)
