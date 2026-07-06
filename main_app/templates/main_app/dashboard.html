@@ -1,4 +1,40 @@
 {% extends 'main_app/base.html' %}
 {% block content %}
-  <h1>Compliance Overview</h1>
+  <div class= 'overview-header'>
+    <h1>📊 Compliance Overview</h1>
+    <p>Real-time system health and laboratory compliance trackers.</p>
+  </div>
+
+  <div class='dashboard-grid'>
+    <a href='{% url 'sops:dashboard' %}' class='stat-card'>
+      <h3>SOP Governance</h3>
+      <p class='stat-number'>{{ sop_count }}</p>
+      <span class='hub-link'>View Hub</span>
+    </a>
+
+    <a href='{% url 'training:dashboard' %}' class='stat-card'>
+      <h3>Employee Training</h3>
+      <p class='stat-number'>{{ training_count }}</p>
+      <span class='hub-link'>View Hub</span>
+    </a>
+
+    <a href='{% url 'deviations:dashboard' %}' class='stat-card'>
+      <h3>Deviations Logged</h3>
+      <p class='stat-number'>{{ deviation_count }}</p>
+      <span class='hub-link'>View Hub</span>
+    </a>
+
+    <a href='{% url 'capas:dashboard' %}' class='stat-card'>
+      <h3>Active CAPAs</h3>
+      <p class='stat-number'>{{ capa_count }}</p>
+      <span class='hub-link'>View Hub</span>
+    </a>
+
+    <a href='{% url 'documents:dashboard' %}' class='stat-card'>
+      <h3>Controlled Documents</h3>
+      <p class='stat-number'>{{ document_count }}</p>
+      <span class='hub-link'>View Hub</span>
+    </a>
+  </div>
+
 {% endblock %}

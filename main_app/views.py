@@ -1,15 +1,21 @@
 from django.shortcuts import render
 
-from django.http import HttpResponse
-
-def home(request):
-    
-    return HttpResponse('<h1>Hello!</h1>')
+from sops.models import SopDocument
+from training.models import TrainingRecord
+from deviations.models import DeviationLog
+from capas.models import CapaAction
+from documents.models import ControlledDocuments
 
 def about(request):
     
     return render(request, 'main_app/about.html')
 
 def overview_dashboard(request):
-    
-    return render(request, 'main_app/dashboard.html')
+    context = {
+        'sop_count': SopDocument.objects.count(),
+        'training_count': TrainingRecord.objects.count(),
+        'deviation_count': DeviationLog.objects.count(),
+        'capa_count': CapaAction.objects.count(),
+        'document_count': ControlledDocuments.objects.count(),
+    }
+    return render(request, 'main_app/dashboard.html', context)

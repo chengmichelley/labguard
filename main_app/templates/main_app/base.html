@@ -6,14 +6,14 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>LabGuard</title>
-        <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/base.css' %}?v=1" />
 
         {% block head %} {% endblock %}
     </head>
     <body>
         <header>
             <div class="header-logo-container">
-                <a><img src="../../static/images/LabGuardLogo.png" alt="LabGuard Logo" height="80" width="auto" /></a>
+                <a><img src="{% static 'images/LabGuardLogo.png' %}" alt="LabGuard Logo" height="80" width="auto" /></a>
             </div>
             <nav class = "navbar">
                 <ul class = "nav-links">
