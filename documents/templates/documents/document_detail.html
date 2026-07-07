@@ -1,0 +1,36 @@
+{% extends "main_app/base.html" %}
+
+{% block content %}
+<div class="overview-header header-split">
+    <div>
+        <h1>📂 File Log: {{ doc.title }}</h1>
+        <p>Category Catalog: <strong>{{ doc.category }}</strong></p>
+    </div>
+    <div class="form-actions">
+        <a href="{% url 'documents:edit' doc.pk %}" class="btn-primary">Update Entry</a>
+        <a href="{% url 'documents:dashboard' %}" class="btn-secondary">Back to Vault</a>
+    </div>
+</div>
+
+<div class="registry-container detail-view-max">
+    <div class="detail-meta-grid">
+        <p><strong>Registered Date:</strong> {{ doc.uploaded_at|date:"Y-m-d H:i" }}</p>
+        <p><strong>Reference Link URL:</strong> 
+            {% if doc.document_url %}
+                <a href="{{ doc.document_url }}" target="_blank" class="table-link-id" style="word-break: break-all;">Open Resource Link ↗</a>
+            {% else %}
+                <span class="help-text">No External URL Logged</span>
+            {% endif %}
+        </p>
+    </div>
+
+    <div class="detail-section">
+        <h3>📋 Core Vault Details</h3>
+        <p class="detail-text">This item is registered under the controlled workspace library. Clicking the link anchor above will securely open the associated external file reference or portal path inside a new browser window tab.</p>
+    </div>
+
+    <div class="detail-footer-signatures">
+        <p><small class="help-text">Asset tracking records verified against your db.sqlite3 configuration.</small></p>
+    </div>
+</div>
+{% endblock %}

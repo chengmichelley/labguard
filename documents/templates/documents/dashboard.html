@@ -1,5 +1,42 @@
 {% extends "main_app/base.html" %}
+
 {% block content %}
-  <h1>📁 Controlled Documents Dashboard</h1>
-  <p>Total Vaulted Documents {{ total_docs }}</p>
+<div class="overview-header header-split">
+    <div>
+        <h1>📂 Controlled Documents Vault</h1>
+        <p>Central repository for reference manuals, certifications, and compliance attachments.</p>
+    </div>
+    <a href="{% url 'documents:create' %}" class="btn-primary">+ Add Document</a>
+</div>
+
+<div class="registry-container">
+    <table class="compliance-table">
+        <thead>
+            <tr>
+                <th>Document Title</th>
+                <th>File Name</th>
+                <th>Category</th>
+                <th>Upload Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for doc in docs %}
+            <tr>
+                <td class="text-bold"><a href="{% url 'documents:detail' doc.pk %}" class="table-link-id">{{ doc.title }}</a></td>
+                <td><span class="status-badge">{{ doc.category }}</span></td>
+                <td>{{ doc.uploaded_at|date:"Y-m-d H:i" }}</td>
+                <td>
+                    <a href="{% url 'documents:edit' doc.pk %}" class="link-edit">Edit</a>
+                    <a href="{% url 'documents:delete' doc.pk %}" class="link-delete">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" class="table-empty">No controlled records logged in the system yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}
