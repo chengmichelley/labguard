@@ -1,0 +1,29 @@
+{% extends 'main_app/base.html' %}
+
+{% block content %}
+<div class='overview-header'>
+  <h1>⚠️ Log Quality System Deviation</h1>
+  <p>Document an unexpected event, laboratory failure, or procedural exception.</p>
+</div>
+
+<div class='form-container'>
+  <form method="POST">
+    {% csrf_token %}
+
+    {% for field in form %}
+    <div class='form-group'>
+      <label>{{ field.label }}</label>
+      {{ field }}
+      {% if field.help_text %}
+        <small class='help-text'>{{ field.help_text }}</small>
+      {% endif %}
+    </div>
+    {% endfor %}
+
+    <div class='form-actions'>
+      <button type='submit' class='btn-primary'>Log Incident</button>
+      <a href='{% url "deviations:dashboard" %}' class='btn-secondary'>Cancel</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

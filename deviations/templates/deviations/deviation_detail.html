@@ -1,0 +1,41 @@
+{% extends "main_app/base.html" %}
+
+{% block content %}
+<div class="overview-header header-split">
+    <div>
+        <h1>⚠️ DEV-{{ deviation.id }}: {{ deviation.title }}</h1>
+        <p>Discovered: <strong>{{ deviation.discovered_at|date:"Y-m-d H:i" }}</strong></p>
+    </div>
+    <div class="form-actions">
+        <a href="{% url 'deviations:edit' deviation.pk %}" class="btn-primary">Edit Investigation</a>
+        <a href="{% url 'deviations:dashboard' %}" class="btn-secondary">Back to Log</a>
+    </div>
+</div>
+
+<div class="registry-container detail-view-max">
+    <div class="detail-meta-grid">
+        <p><strong>Status:</strong> <span class="status-badge">{{ deviation.get_status_display }}</span></p>
+        <p><strong>Related SOP:</strong> 
+            {% if deviation.related_sop %}
+                <a href="{% url 'sops:detail' deviation.related_sop.pk %}" class="table-link-id">{{ deviation.related_sop.doc_number }}</a>
+            {% else %}
+                <span class="help-text">None Linked</span>
+            {% endif %}
+        </p>
+    </div>
+
+    <div class="detail-section">
+        <h3>📋 Incident Description</h3>
+        <p class="detail-text">{{ deviation.description }}</p>
+    </div>
+
+    <div class="detail-section safety-alert-block">
+        <h3>🚨 Immediate Action Taken</h3>
+        <p class="detail-text">{{ deviation.immediate_action_taken }}</p>
+    </div>
+
+    <div class="detail-footer-signatures">
+        <p><small class="help-text">Logged on: {{ deviation.created_at|date:"Y-m-d H:i" }}</small></p>
+    </div>
+</div>
+{% endblock %}
