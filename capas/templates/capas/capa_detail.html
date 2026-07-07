@@ -1,0 +1,49 @@
+{% extends "main_app/base.html" %}
+
+{% block content %}
+<div class="overview-header header-split">
+    <div>
+        <h1>🔧 CAPA-{{ capa.id }}: {{ capa.title }}</h1>
+        <p>Target Resolution Date: <strong>{{ capa.due_date|date:"Y-m-d"|default:"Not Assigned" }}</strong></p>
+    </div>
+    <div class="form-actions">
+        <a href="{% url 'capas:edit' capa.pk %}" class="btn-primary">Edit Plan</a>
+        <a href="{% url 'capas:dashboard' %}" class="btn-secondary">Back to Log</a>
+    </div>
+</div>
+
+<div class="registry-container detail-view-max">
+    <div class="detail-meta-grid">
+        <p><strong>Status:</strong> <span class="status-badge">{{ capa.get_status_display }}</span></p>
+        <p><strong>Source Incident:</strong> 
+            {% if capa.related_deviation %}
+                <a href="{% url 'deviations:detail' capa.related_deviation.pk %}" class="table-link-id">DEV-{{ capa.related_deviation.id }}</a>
+            {% else %}
+                <span class="help-text">Standalone CAPA</span>
+            {% endif %}
+        </p>
+    </div>
+
+    <div class="detail-section">
+        <h3>📋 Root Cause Analysis</h3>
+        <p class="detail-text">{{ capa.root_cause }}</p>
+    </div>
+
+    <div class="detail-section">
+        <h3>⚙️ Preventive Action Plan</h3>
+        <p class="detail-text">{{ capa.preventive_action|default:"No preventive action plan defined." }}</p>
+    </div>
+
+    <div class="detail-footer-signatures">
+        <p><strong>Effectiveness Verified:</strong> 
+            {% if capa.is_effective == True %}
+                <span class="status-badge" style="background-color: #dcfce7; color: #15803d; border-color: #bbf7d0;">Pass / Effective</span>
+            {% elif capa.is_effective == False %}
+                <span class="status-badge" style="background-color: #fee2e2; color: #b91c1c; border-color: #fca5a5;">Fail / Ineffective</span>
+            {% else %}
+                <span class="help-text">Pending Verification Check</span>
+            {% endif %}
+        </p>
+    </div>
+</div>
+{% endblock %}

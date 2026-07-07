@@ -1,5 +1,43 @@
 {% extends "main_app/base.html" %}
+
 {% block content %}
-  <h1>🔧 CAPA Action Plans Dashboard</h1>
-  <p>Active CAPA Actions: {{ active_capas }}</p>
+<div class="overview-header header-split">
+    <div>
+        <h1>🔧 CAPA Action Plans</h1>
+        <p>Corrective and Preventive Action management workspace.</p>
+    </div>
+    <a href="{% url 'capas:create' %}" class="btn-primary">+ Open CAPA</a>
+</div>
+
+<div class="registry-container">
+    <table class="compliance-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Due Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for capa in capas %}
+            <tr>
+                <td class="text-bold"><a href="{% url 'capas:detail' capa.pk %}" class="table-link-id">CAPA-{{ capa.id }}</a></td>
+                <td>{{ capa.title }}</td>
+                <td>{{ capa.due_date|default:"No Target Date" }}</td>
+                <td><span class="status-badge">{{ capa.get_status_display }}</span></td>
+                <td>
+                    <a href="{% url 'capas:edit' capa.pk %}" class="link-edit">Edit</a>
+                    <a href="{% url 'capas:delete' capa.pk %}" class="link-delete">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="table-empty">No active CAPA tracking logs found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}
