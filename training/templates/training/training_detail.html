@@ -1,0 +1,36 @@
+{% extends "main_app/base.html" %}
+
+{% block content %}
+<div class="overview-header header-split">
+    <div>
+        <h1>🎓 Qualification Record: {{ record.employee_name }}</h1>
+        <p>Target Deadline Date: <strong>{{ record.due_date|date:"Y-m-d" }}</strong></p>
+    </div>
+    <div class="form-actions">
+        <a href="{% url 'training:edit' record.pk %}" class="btn-primary">Update Status</a>
+        <a href="{% url 'training:dashboard' %}" class="btn-secondary">Back to Matrix</a>
+    </div>
+</div>
+
+<div class="registry-container detail-view-max">
+    <div class="detail-meta-grid">
+        <p><strong>Compliance Status:</strong> <span class="status-badge">{{ record.get_status_display }}</span></p>
+        <p><strong>Mandated SOP Target:</strong> 
+            {% if record.related_sop %}
+                <a href="{% url 'sops:detail' record.related_sop.pk %}" class="table-link-id">{{ record.related_sop.doc_number }} — {{ record.related_sop.title }}</a>
+            {% else %}
+                <span class="help-text">Standalone Training Track</span>
+            {% endif %}
+        </p>
+    </div>
+
+    <div class="detail-section">
+        <h3>📋 Core Requirement Details</h3>
+        <p class="detail-text">This curriculum configuration registers that <strong>{{ record.employee_name }}</strong> must review and confirm full execution capability regarding the attached operating procedure before checking off operations.</p>
+    </div>
+
+    <div class="detail-footer-signatures">
+        <p><small class="help-text">Record initialization status tracked via dynamic database entry.</small></p>
+    </div>
+</div>
+{% endblock %}

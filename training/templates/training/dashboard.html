@@ -1,5 +1,49 @@
 {% extends "main_app/base.html" %}
+
 {% block content %}
-  <h1>🎓 Employee Training Dashboard</h1>
-  <p>Overdue Training Logs: {{ overdue_count }}</p>
+<div class="overview-header header-split">
+    <div>
+        <h1>🎓 Employee Training Matrix</h1>
+        <p>Assign, track, and verify laboratory operational staff training certifications.</p>
+    </div>
+    <a href="{% url 'training:create' %}" class="btn-primary">+ Assign Training</a>
+</div>
+
+<div class="registry-container">
+    <table class="compliance-table">
+        <thead>
+            <tr>
+                <th>Employee Name</th>
+                <th>Assigned SOP</th>
+                <th>Due Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in records %}
+            <tr>
+                <td class="text-bold"><a href="{% url 'training:detail' record.pk %}" class="table-link-id">{{ record.employee_name }}</a></td>
+                <td>
+                    {% if record.related_sop %}
+                        <a href="{% url 'sops:detail' record.related_sop.pk %}" class="table-link-id">{{ record.related_sop.doc_number }}</a>
+                    {% else %}
+                        <span class="help-text">None Linked</span>
+                    {% endif %}
+                </td>
+                <td>{{ record.due_date|date:"Y-m-d" }}</td>
+                <td><span class="status-badge">{{ record.get_status_display }}</span></td>
+                <td>
+                    <a href="{% url 'training:edit' record.pk %}" class="link-edit">Edit</a>
+                    <a href="{% url 'training:delete' record.pk %}" class="link-delete">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="table-empty">No personnel training records assigned yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}
