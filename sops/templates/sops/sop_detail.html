@@ -1,0 +1,52 @@
+{% extends 'main_app/base.html' %}
+
+{% block content %}
+
+<div class='overview-header header-split'>
+  <div>
+    <h1>📄 {{ sop.doc.number }}: {{ sop.title }} <h1>
+    <p>Managed by Department: <strong>{{ sop.author_department|default:'Unassigned'}}</strong> - Version v{{ sop.version }}</p>
+  </div>
+  <div class='form-actions'>
+    <a href='{% url 'sops:edit' sop.pk %}' class='btn-primary'>Edit Configuration</a>
+    <a href='{% url 'sops:dashboard' %}'>Back to Registry</a>
+  </div>
+</div>
+
+<div class='registry-container detail-view-max'>
+  <div class='detail-meta-grid'>
+    <p><strong>Status:</strong><span class='status-badge'>{{ sop.get_status_display }}</span></p>
+    <p><strong>Effective Date:</strong>{{ sop.effective_date|default:'Pending Review' }}</p>
+  </div>
+
+  <div class='detail-section'>
+    <h3>📋 Purpose & Scope</h3>
+    <p class='detail-text'>{{ sop.purpose_scope|default:'No purpose content provided.' }}</p>
+  </div>
+
+  <div class='detail-section'>
+    <h3>👥 Roles & Responsibilities</h3>
+    <p class='detail-text'>{{ sop.roles_responsibilities|default:'No roles provided.' }}</p>
+  </div>
+
+  <div class='detail-section'>
+    <h3>🔧 Required Tools & Equipment</h3>
+    <p class='detail-text'>{{ sop.roles_responsibilities|default:'No roles provided.' }}</p>
+  </div>
+
+  <div class='detail-section'>
+    <h3>⚙️ Procedure Steps</h3>
+    <p class='detail-text'>{{ sop.procedure_steps|default:'No instruction steps logged.'}}</p>
+  </div>
+
+  <div class='detail-section'>
+    <h3>⚠️ Safety & Compliance</h3>
+    <p class='detail-text'>{{ sop.safety_compliance|default:'No hazard guidelines logged.' }}</p>
+  </div>
+
+  <div class='detail-section'>
+    <p><strong>Approvals & Signatures:</strong><em>{{ sop.approved_by|default:'Awaiting Sign-off' }}</em></p>
+  </div>
+</div>
+
+{% endblock %}

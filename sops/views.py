@@ -39,4 +39,8 @@ def sop_delete(request, pk):
         sop.delete()
         return redirect('sops:dashboard')
     return render(request, 'sops/sop_confirm_delete.html', {'sop': sop})
+
+def sop_detail(request, pk):
+    sop = get_object_or_404(SopDocument, pk=pk)
+    return render(request, 'sops/sop_detail.html', {'sop': sop})
         

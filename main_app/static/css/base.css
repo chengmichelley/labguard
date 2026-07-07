@@ -332,3 +332,49 @@ main {
     gap: 12px;
 }
 
+.table-link-id {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+.table-link-id:hover {
+    text-decoration: underline;
+}
+
+.detail-view-max {
+    max-width: 800px;
+}
+
+.detail-meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.detail-section {
+    margin-bottom: 24px;
+}
+
+.detail-section h3 {
+    color: #0f172a;
+    margin-bottom: 8px;
+}
+
+.detail-text {
+    color: #334155;
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+
+.safety-alert-block h3 {
+    color: #dc2626;
+}
+
+.detail-footer-signatures {
+    padding-top: 16px;
+    border-top: 1px solid #e2e8f0;
+}
+

@@ -24,7 +24,9 @@
       <tbody>
         {% for sop in sops %}
         <tr>
-          <td class='text-bold'>{{ sop.doc_number }}</td>
+          <td class='text-bold'>
+            <a href='{% url 'sops:detail' sop.pk %}' class='table-link-id'>{{ sop.doc_number }}</a>
+          </td> 
           <td>{{ sop.title }}</td>
           <td>v{{ sop.version}}</td>
           <td><span class='status-badge'>{{ sop.get_status_display }}</span></td>
