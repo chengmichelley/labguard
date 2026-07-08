@@ -1,5 +1,5 @@
 # LABGUARD
-![photo of LabGuard Dashboard](static/images/LabGuardDashboard.png)
+![photo of LabGuard Dashboard](main_app/static/images/LabGuardDashboard.png)
 
 ## Background
 
