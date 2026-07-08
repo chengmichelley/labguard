@@ -24,7 +24,7 @@ I built this application to demonstrate how tailored software solutions can dire
 * Python
 * Django
 * Django ORM
-* Flask
+* Heroku
 * HTML5
 * CSS
 * PostgreSQL
