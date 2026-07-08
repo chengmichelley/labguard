@@ -123,4 +123,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 LOGIN_URL = 'main_app:login'
+
+import django_on_heroku
+django_on_heroku.settings(locals())
