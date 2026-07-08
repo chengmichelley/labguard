@@ -1,0 +1,17 @@
+asgiref==3.11.1
+certifi==2026.4.22
+distlib==0.4.0
+dj-database-url==3.1.2
+Django==6.0.7
+django-on-heroku==1.1.2
+filelock==3.29.0
+gunicorn==26.0.0
+packaging==26.2
+pipenv==2026.6.1
+platformdirs==4.9.6
+psycopg2-binary==2.9.12
+python-discovery==1.3.1
+setuptools==83.0.0
+sqlparse==0.5.5
+virtualenv==21.3.3
+whitenoise==6.12.0
