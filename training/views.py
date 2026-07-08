@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from .models import TrainingRecord
 from .forms import TrainingRecordForm
 
+@login_required
 def training_dashboard(request):
     records = TrainingRecord.objects.all().order_by('-due_date')
     return render(request, 'training/dashboard.html', {'records': records, 'record_count': records.count()})

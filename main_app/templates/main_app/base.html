@@ -6,7 +6,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>LabGuard</title>
-        <link rel="stylesheet" href="{% static 'css/base.css' %}?v=3" />
+        <link rel="stylesheet" href="{% static 'css/base.css' %}?v=7" />
         <link rel='icon' type='image/png' href='{% static 'images/favicon.png' %}'/>
 
         {% block head %} {% endblock %}
@@ -14,7 +14,9 @@
     <body>
         <header>
             <div class="header-logo-container">
-                <a><img src="{% static 'images/LabGuardLogo.png' %}" alt="LabGuard Logo" height="80" width="auto" /></a>
+                <a href='{% url 'main_app:about' %}'>
+                  <img src="{% static 'images/LabGuardLogo.png' %}" alt="LabGuard Logo" height="80" width="auto" />
+                </a>
             </div>
             <nav class = "navbar">
                 <ul class = "nav-links">
@@ -33,6 +35,20 @@
             <a href="{% url 'deviations:dashboard' %}">⚠️ Deviations & Exceptions</a>
             <a href="{% url 'capas:dashboard' %}">🔧 CAPA Action Plans</a>
             <a href="{% url 'documents:dashboard' %}">📁 Controlled Documents</a>
+
+            <div class="sidebar-footer">
+                {% if user.is_authenticated %}
+                    <p class="sidebar-user-tag">User: <strong>{{ user.username }}</strong></p>
+                    
+                    {% if user.profile.role == 'manager' or user.profile.role == 'admin' %}
+                        <a href="{% url 'main_app:signup' %}" class="link-management-action">➕ Register Employee</a>
+                    {% endif %}
+                    
+                    <a href="{% url 'main_app:logout' %}" class="link-logout-action">🚪 Log Out</a>
+                {% else %}
+                    <a href="{% url 'main_app:login' %}">🔑 Authorized Sign In</a>
+                {% endif %}
+            </div>
           </nav>
 
         <main>{% block content%} {% endblock %}</main>

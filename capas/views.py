@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from .models import CapaAction
 from .forms import CapaActionForm
 
+@login_required
 def capa_dashboard(request):
     capas = CapaAction.objects.all().order_by('-due_date')
     return render(request, 'capas/dashboard.html', {'capas': capas, 'capa_count': capas.count()})

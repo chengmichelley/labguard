@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from .models import DeviationLog
 from .forms import DeviationLogForm
 
+@login_required
 def deviation_dashboard(request):
     deviations = DeviationLog.objects.all().order_by('-created_at')
     return render(request, 'deviations/dashboard.html', {'deviations': deviations, 'deviation_count': deviations.count()})

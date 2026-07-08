@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from .models import ControlledDocument
 from .forms import ControlledDocumentForm
 
+@login_required
 def document_dashboard(request):
     docs = ControlledDocument.objects.all().order_by('-uploaded_at')
     return render(request, 'documents/dashboard.html', {'docs': docs, 'doc_count': docs.count()})

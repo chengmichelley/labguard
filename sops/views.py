@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from .models import SopDocument
 from .forms import SopDocumentForm
 
+@login_required
 def sop_dashboard(request):
     sops_list = SopDocument.objects.all().order_by('-created_at')
     context = {

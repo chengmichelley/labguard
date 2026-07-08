@@ -1,0 +1,38 @@
+{% extends 'main_app/base.html' %}
+
+{% block content %}
+<div class='overview-header'>
+  <h1>📋 Personnel Registration</h1>
+  <p>Create a new secure operational profile for the LabGuard network.</p>
+</div>
+
+<div class='form-container'>
+  <form method="POST">
+    {% csrf_token %}
+
+    {% for field in form %}
+    <div class='form-group'>
+      <label>{{ field.label }}</label>
+      {{ field }}
+      {% if field.help_text %}
+        <small class='help-text'>{{ field.help_text }}</small>
+      {% endif %}
+    </div>
+    {% endfor %}
+
+    <div class='form-group'>
+      <label>Assigned Laboratory Role</label>
+      <select name="role" class="form-control">
+        <option value="staff">Laboratory Staff (View Only)</option>
+        <option value="manager">Laboratory Manager (Edit & Log Data)</option>
+        <option value="admin">System Administrator (Full Controls)</option>
+      </select>
+    </div>
+
+    <div class='form-actions'>
+      <button type='submit' class='btn-primary'>Register Profile</button>
+      <a href='{% url "main_app:login" %}' class='btn-secondary'>Cancel</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

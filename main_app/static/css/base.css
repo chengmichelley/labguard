@@ -378,3 +378,50 @@ main {
     border-top: 1px solid #e2e8f0;
 }
 
+.btn-link-text {
+    background: none;
+    border: none;
+    color: #2563eb !important;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.15s ease;
+    white-space: nowrap;
+}
+
+.btn-link-text:hover {
+    color: #1d4ed8 !important;
+    text-decoration: underline;
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    padding-top: 24px;
+    border-top: 1px solid #334155;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.sidebar-user-tag {
+    color: #94a3b8;
+    font-size: 13px;
+    margin: 0 0 8px 12px;
+}
+
+.link-management-action {
+    color: #60a5fa !important;
+}
+
+.link-management-action:hover {
+    color: #93c5fd !important;
+    text-decoration: underline;
+}
+
+.link-logout-action {
+    color: #f87171 !important;
+}
+
+.link-logout-action:hover {
+    color: #fca5a5 !important;
+    text-decoration: underline;
+}
