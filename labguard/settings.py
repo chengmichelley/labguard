@@ -85,11 +85,14 @@ WSGI_APPLICATION = 'labguard.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+import dj_database_url
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'labguard',
-    }
+    'default': dj_database_url.config(
+        default='postgresql://localhost/labguard',
+        conn_max_age=600,
+        ssl_require=True
+    )
 }
 
 
