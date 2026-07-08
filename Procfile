@@ -1,1 +1,1 @@
-web: gunicorn labguard.wsgi
+web: gunicorn app:app --preload
