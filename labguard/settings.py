@@ -85,15 +85,25 @@ WSGI_APPLICATION = 'labguard.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+import os
 import dj_database_url
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default='postgresql://localhost/labguard',
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'labguard',
+        'USER': 'michellecheng',
+        'PASSWORD': '',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
+}
+
+if os.environ.get('DATABASE_URL'):
+    DATABASES['default'] = dj_database_url.config(
         conn_max_age=600,
         ssl_require=True
     )
-}
 
 
 # Password validation
